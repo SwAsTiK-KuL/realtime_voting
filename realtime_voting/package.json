@@ -1,42 +1,41 @@
 {
-  "name": "real-time-polling-api",
+  "name": "realtime-voting-monorepo",
   "version": "1.0.0",
-  "description": "Real-time polling application backend with WebSocket support",
+  "description": "Real-time polling application with backend and frontend",
   "type": "module",
-  "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "db:generate": "prisma generate",
-    "db:push": "prisma db push",
-    "db:migrate": "prisma migrate dev",
-    "db:seed": "node prisma/seed.js",
-    "db:studio": "prisma studio",
-    "postinstall": "prisma generate"
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
+    "backend:dev": "cd backend && npm run dev",
+    "frontend:dev": "vite",
+    "backend:install": "cd backend && npm install",
+    "frontend:install": "npm install",
+    "install:all": "npm run backend:install && npm run frontend:install",
+    "build": "vite build",
+    "start": "cd backend && npm start"
   },
-  "keywords": ["polling", "real-time", "websocket", "nodejs", "express", "prisma"],
-  "author": "Your Name",
+  "keywords": [
+    "polling",
+    "real-time",
+    "websocket",
+    "nodejs",
+    "express",
+    "react",
+    "fullstack"
+  ],
+  "author": "Swastik Kulkarni",
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "^5.6.0",
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "helmet": "^7.1.0",
-    "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.2",
-    "socket.io": "^4.7.4",
-    "dotenv": "^16.3.1",
-    "express-rate-limit": "^7.1.5",
-    "joi": "^17.11.0"
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "socket.io-client": "^4.8.1",
+    "lucide-react": "^0.544.0"
   },
   "devDependencies": {
-    "prisma": "^5.6.0",
-    "nodemon": "^3.0.1"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "prisma": {
-    "schema": "prisma/schema.prisma"
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^8.2.2",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "vite": "^4.5.14"
   }
 }
